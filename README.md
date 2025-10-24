@@ -1,13 +1,10 @@
-﻿# International Students and Mental Health — SQL Data Analysis
+# International Students and Mental Health — SQL Data Analysis
 
 ### Overview
-This project explores the question:  
-**Does studying in a different country affect a student's mental health?**
+This project investigates whether studying in a different country affects a student's mental health.  
+It uses survey data from a Japanese international university collected in 2018 to explore how the **length of stay** impacts depression, social connectedness, and acculturative stress among international students.
 
-Using survey data from a Japanese international university (2018), the analysis examines how factors such as social connectedness, acculturative stress, and length of stay relate to depression among international and domestic students.  
-The original study found that international students face a higher risk of mental health difficulties than the general population and that both social connectedness and acculturative stress are strong predictors of depression.
-
-This project reproduces and explores similar relationships using SQL queries on the provided dataset.
+The dataset was analyzed using **PostgreSQL** within DataCamp Workspace to reproduce insights similar to published academic findings on mental health and adaptation challenges among international students.
 
 ---
 
@@ -28,16 +25,29 @@ This project reproduces and explores similar relationships using SQL queries on 
 
 ---
 
-### Objectives
-1. Explore the relationship between **length of stay** and **mental health** for international students.
-2. Compare average depression, stress, and connectedness scores between student groups.
-3. Identify whether longer stays correlate with improved or worsened well-being.
+### Project Instructions
+Explore and analyze the `students` data to determine how the **length of stay (`stay`)** impacts the **average mental health diagnostic scores** of international students in the study.
+
+The final query should:
+1. Return a table with **nine rows** and **five columns**.
+2. Alias the columns as:  
+   - `stay`  
+   - `count_int`  
+   - `average_phq`  
+   - `average_scs`  
+   - `average_as`
+3. Compute the averages of:
+   - `todep` (PHQ-9 test)  
+   - `tosc` (SCS test)  
+   - `toas` (ASISS test)  
+   rounded to two decimal places.
+4. Include `count_int` as the number of international students per length of stay.
+5. Sort the results by `stay` in descending order.
+6. Ensure the final DataFrame name is **`df`**.
 
 ---
 
-### SQL Analysis
-The dataset was explored using PostgreSQL to calculate average scores by length of stay for international students.
-
+### SQL Query
 ```sql
 SELECT stay, 
        COUNT(*) AS count_int, 
@@ -48,4 +58,3 @@ FROM students
 WHERE inter_dom = 'Inter'
 GROUP BY stay
 ORDER BY stay DESC;
-
